@@ -1,0 +1,15 @@
+<div id="<%= dom_id brewery %>">
+
+<p> Number of Beers in Breweries :<%= @brewery.beers.count %> </p>
+  <h2>
+    <strong>Name:</strong>
+    
+    <%= link_to brewery.name %>
+  </h2>
+
+  <p>
+    <i>Year:</i>
+    <%= brewery.year %>
+  </p>
+
+</div>
