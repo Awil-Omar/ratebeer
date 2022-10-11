@@ -3,21 +3,16 @@
 <h1>Breweries</h1>
 
 <p>Number of breweries: <%= @breweries.count %></p>
-<p> Number of Beers in Breweries :<%= @brewery.beers.count %> </p>
+  
 
 <div id="breweries">
   <% @breweries.each do |brewery| %>
     <div id="<%= dom_id brewery %>">
-      <p>
-        <%= link_to brewery.name, brewery %>
-      </p>
-    
-      <p>
-        <strong>Year:</strong>
-        <%= brewery.year %>
-      </p>
-    
-    </div>
+      <h2> Name: <%= link_to brewery.name, brewery %></h2>
+      
+      <strong>Established in </strong>
+      <i> <%= brewery.year %> </i>
+        </div>
   <% end %>
 </div>
 
