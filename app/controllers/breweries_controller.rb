@@ -1,18 +1,18 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: %i[ show edit update destroy ]
+  before_action :authenticate, only: [:destroy]
 
+ 
   # GET /breweries or /breweries.json
   def index
     @breweries = Brewery.all
-  
-
   end
+
+ 
 
   # GET /breweries/1 or /breweries/1.json
   def show
     @breweries = Brewery.find(params[:id])
-    render :show
-
   end
 
   # GET /breweries/new
@@ -73,4 +73,14 @@ class BreweriesController < ApplicationController
     def brewery_params
       params.require(:brewery).permit(:name, :year)
     end
+
+     # ...
+  private
+  # ...
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      raise "Wrong username or password" unless username == "admin" and password == "secret"
+      return true
+    end
+  end
 end

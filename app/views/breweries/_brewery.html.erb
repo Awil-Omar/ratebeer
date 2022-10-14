@@ -3,7 +3,9 @@
   <h2>
      <%= brewery.name %>
   </h2>
-
+<p>
+     Establisched in: <%= brewery.year %>
+  </p>
   <p>
    beers count are:  <%=brewery.beers.count %>
   </p>
@@ -11,7 +13,14 @@
  <p>
 <% brewery.beers.each do |beer| %>
 <%= link_to " #{beer.name}", beer%>
+
 <% end %>
 </p>
+
+<p> Brewery has  <%=brewery.ratings.count %> with an average of  <%= brewery.average_rating%> </p>
+
+
+
+
 
 </div>

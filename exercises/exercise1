@@ -1,0 +1,75 @@
+irb(main):038:0> b = Brewery.create name:"BrewDog", year:2007
+  TRANSACTION (0.1ms)  begin transaction
+  Brewery Create (1.3ms)  INSERT INTO "breweries" ("name", "year", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "BrewDog"], ["year", 2007], ["created_at", "2022-10-12 07:29:54.572611"], ["updated_at", "2022-10-12 07:29:54.572611"]]
+  TRANSACTION (4.0ms)  commit transaction                              
+=>                                                                     
+#<Brewery:0x000002a74ce50e20                                           
+...                                                                    
+irb(main):039:0> Beer
+=> Beer(id: integer, name: string, style: string, brewery_id: integer, created_at: datetime, updated_at: datetime)
+irb(main):040:0> b.beers.create name:"Punk IPA", style:"IPA"
+  TRANSACTION (0.1ms)  begin transaction
+  Beer Create (1.8ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Punk IPA"], ["style", "IPA"], ["brewery_id", 8], ["created_at", "2022-10-12 07:31:45.381282"], ["updated_at", "2022-10-12 07:31:45.381282"]]
+  TRANSACTION (3.8ms)  commit transaction
+=>                                                                                                                                               
+#<Beer:0x000002a74d6d94c0
+ id: 19,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 8,
+ created_at: Wed, 12 Oct 2022 07:31:45.381282000 UTC +00:00,
+ updated_at: Wed, 12 Oct 2022 07:31:45.381282000 UTC +00:00>
+irb(main):041:0> b.beers.create name:"Nany State", style:"lowalcohol"
+  TRANSACTION (0.1ms)  begin transaction
+  Beer Create (2.0ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Nany State"], ["style", "lowalcohol"], ["brewery_id", 8], ["created_at", "2022-10-12 07:32:19.368474"], ["updated_at", "2022-10-12 07:32:19.368474"]]
+  TRANSACTION (4.0ms)  commit transaction                    
+=>                                                           
+#<Beer:0x000002a74e0e1760                                    
+ id: 20,                                                     
+ name: "Nany State",                                         
+ style: "lowalcohol",                                        
+ brewery_id: 8,                                              
+ created_at: Wed, 12 Oct 2022 07:32:19.368474000 UTC +00:00, 
+ updated_at: Wed, 12 Oct 2022 07:32:19.368474000 UTC +00:00> 
+irb(main):042:0> b
+=> 
+#<Brewery:0x000002a74ce50e20                                 
+ id: 8,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Wed, 12 Oct 2022 07:29:54.572611000 UTC +00:00,
+ updated_at: Wed, 12 Oct 2022 07:29:54.572611000 UTC +00:00>                                                                                     
+irb(main):043:0> clear
+(irb):43:in `<main>': undefined local variable or method `clear' for main:Object (NameError)
+                                  
+clear                             
+^^^^^                             
+Did you mean?  caller             
+irb(main):044:0> b
+=> 
+#<Brewery:0x000002a74ce50e20      
+ id: 8,                           
+ name: "BrewDog",                 
+ year: 2007,                      
+ created_at: Wed, 12 Oct 2022 07:29:54.572611000 UTC +00:00,
+ updated_at: Wed, 12 Oct 2022 07:29:54.572611000 UTC +00:00>
+irb(main):045:0> b.beers
+  Beer Load (0.7ms)  SELECT "beers".* FROM "beers" WHERE "beers"."brewery_id" = ?  [["brewery_id", 8]]
+=>                                  
+[#<Beer:0x000002a74d6d94c0          
+  id: 19,                           
+  name: "Punk IPA",                 
+  style: "IPA",                     
+  brewery_id: 8,
+  created_at: Wed, 12 Oct 2022 07:31:45.381282000 UTC +00:00,
+  updated_at: Wed, 12 Oct 2022 07:31:45.381282000 UTC +00:00>,
+ #<Beer:0x000002a74e0e1760
+  id: 20,
+  name: "Nany State",
+  style: "lowalcohol",
+  brewery_id: 8,
+  created_at: Wed, 12 Oct 2022 07:32:19.368474000 UTC +00:00,
+  updated_at: Wed, 12 Oct 2022 07:32:19.368474000 UTC +00:00>]
+irb(main):046:0> b.save
+=> true
+irb(main):047:0>
