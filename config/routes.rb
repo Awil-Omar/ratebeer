@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :beers
   resources :breweries
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -10,4 +11,12 @@ Rails.application.routes.draw do
   # post 'ratings' , to: 'ratings#create'
 
   resources :ratings, only: [:index, :new, :create, :destroy]
+
+  root 'breweries#index'
+  get 'signup', to: 'users#new'
+  get 'signin', to: 'sessions#new'
+  delete 'sign-out', to: 'sessions#destroy'
+
+  resource :session, only: [:index, :new, :create, :destroy]
+
 end

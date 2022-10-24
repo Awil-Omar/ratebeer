@@ -1,11 +1,8 @@
 module RatingAverage
-    extend ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
-
-
-def average_rating
+  def average_rating
     # @average  = ratings.score / ratings.count
     ratings.average(:score)
-end
-
+  end
 end

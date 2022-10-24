@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-  <div class = "navibar">
+    <div class = "navibar">
       <%= link_to 'breweries', breweries_path %>
       <%= link_to 'beers', beers_path %>
       <%= link_to 'ratings', ratings_path %>
-
+       <%= link_to 'users', users_path %>
+        <%= link_to 'rate new beer', new_rating_path %>
+        <%= link_to 'sign-out', sign_out_path, data: {turbo_method: :delete} %>
+        <%= link_to 'sign up', signup_path %>
+        <%= link_to 'sign in', signin_path%>
+        <% if current_user %>
+          <p><%= current_user.username %> signed in </p>
+      <% end %>
     </div>
-
     <%= yield %>
   </body>
 </html>
