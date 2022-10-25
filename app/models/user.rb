@@ -12,4 +12,8 @@ class User < ApplicationRecord
   def average
     ratings.map(&:score).sum / ratings.count.to_f unless 0
   end
+
+  def to_s
+    "#{username}"
+  end
 end

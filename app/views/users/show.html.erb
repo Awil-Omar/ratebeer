@@ -13,19 +13,26 @@
   <%# end %>
 </ul>-->
 
-<!--<ul>
-  <%# user.ratings.each do |rating| %>
-    <li><%#="#{rating.to_s}" %>
-      <%# if @user == current_user %>
-        <%#= link_to "Delete", rating, data: {turbo_method: :delete} %>
-      <%# end %>
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li><%="#{rating.to_s}" %>
+      <% if @user == current_user %>
+        <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+
+      <% end %>
     </li>
-  <%# end %>
-</ul>-->
+  <% end %>
+</ul>
 
 <div>
+  <% if @user == current_user %>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
+  <%= button_to "Destroy this user", @user, method: :delete, form: { data: { turbo_confirm: 'Are you sure want to delete?' } } %>
+    <% else %>
+    <p> Please sign in in order to edit or delete your user</p>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+    <% end %>
+
 </div>
+
