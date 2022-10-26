@@ -7,7 +7,7 @@ class Beer < ApplicationRecord
   has_many :raters, -> {distinct}, through: :ratings, source: :user
 
   def to_s
-    "#{Rating.name}"
+    "#{name} "
   end
 
   def average

@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, length: { minimum: 3 , maximum: 30}
   validates :password, length: { minimum: 4 }
 
-  #validates :user_id, numericality: { greater_than_or_equal_to: 3, less_than_or_equal_to: 30 }
+
   has_many :ratings
   has_many :beers, through: :ratings
 
@@ -15,5 +15,11 @@ class User < ApplicationRecord
 
   def to_s
     "#{username}"
+  end
+
+  def favorite_beer
+    return nil if ratings.empty?
+
+    ratings.sort_by{ |r| r.score }.last.beer
   end
 end

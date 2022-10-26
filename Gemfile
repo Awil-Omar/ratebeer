@@ -87,3 +87,17 @@ gem 'pry-byebug'
 end
 
 gem 'bcrypt', '~> 3.1.7'
+
+group :test do
+  # ...
+  gem 'rspec-rails', '~> 6.0.0.rc1'
+end
+
+gem 'ffi', '~> 1.15', '>= 1.15.5'
+
+group :development, :test do
+  gem 'factory_bot_rails'
+end
+
+
+

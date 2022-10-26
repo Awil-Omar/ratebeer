@@ -1,38 +1,33 @@
-
 <p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<h2><%= @user.username %></h2>
 
 
 
-<p>has made: <%= @user.ratings.count %> ratings , average rating <%= @user.average_rating%> </p>
-<!--<ul>
-  <%# @user.ratings.each do |rating| %>
-    <li> <%#= rating.beer.name%> <%#= rating.score%>
-      <%#= button_to 'delete', rating_path(rating.id), method: :delete, form: { data: { turbo_confirm: 'Are you sure want to delete?' } } %>
-  <%# end %>
-</ul>-->
+<% if @user.ratings.empty? %>
+  Has not yet made ratings
+<% else %>
+  Has made <%= pluralize(@user.ratings.count, 'rating') %> with an average of <%= @user.average_rating %>
 
-<ul>
-  <% @user.ratings.each do |rating| %>
-    <li><%="#{rating.to_s}" %>
-      <% if @user == current_user %>
-        <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+  <h4>ratings</h4>
 
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-
-<div>
-  <% if @user == current_user %>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-  <%= button_to "Destroy this user", @user, method: :delete, form: { data: { turbo_confirm: 'Are you sure want to delete?' } } %>
-    <% else %>
-    <p> Please sign in in order to edit or delete your user</p>
-
+  <ul>
+    <% @user.ratings.each do |rating| %>
+      <li>
+        <%= "#{rating.score} #{rating.beer.name}" %>
+        <% if @user == current_user %>
+          <%= button_to 'delete', rating, method: :delete, form: { style: 'display:inline-block;',  data: { 'turbo-confirm': 'Are you sure?' } } %>
+        <% end %>
+        </li>
     <% end %>
+  </ul>
+<% end %>
 
-</div>
+<% if @user == current_user %>
+  <div>
+    <%= link_to "Change password", edit_user_path(@user) %> |
+
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  </div>
+<% end %>
 

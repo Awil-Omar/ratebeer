@@ -6,11 +6,8 @@ class Rating < ApplicationRecord
                                     less_than_or_equal_to: 50,
                                     only_integer: true }
 
-  def to_s
-    "#{beer.name} #{score}"
-  end
 
-  def average_rating
-    @average = ratings.score
+  def to_s
+    "#{name} "
   end
 end
