@@ -22,4 +22,10 @@ class User < ApplicationRecord
 
     ratings.sort_by{ |r| r.score }.last.beer
   end
+
+  def favorite_style()
+    return nil if ratings.empty?
+
+
+  end
 end

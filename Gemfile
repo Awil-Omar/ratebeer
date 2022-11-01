@@ -67,17 +67,6 @@ group :development do
   # gem "spring"
 end
 
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
-end
-
-group :development, :test do
-  gem 'sqlite3'
-end
-
 group :production do
    gem 'pg'
 end
@@ -88,16 +77,26 @@ end
 
 gem 'bcrypt', '~> 3.1.7'
 
-group :test do
-  # ...
-  gem 'rspec-rails', '~> 6.0.0.rc1'
-end
-
 gem 'ffi', '~> 1.15', '>= 1.15.5'
 
 group :development, :test do
   gem 'factory_bot_rails'
+  gem 'sqlite3'
 end
+
+group :test do
+  gem 'rspec-rails', '~> 6.0.0.rc1'
+  gem 'factory_bot_rails'
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+  gem 'launchy'
+end
+
+
+gem 'simplecov' , require: false
+
+
 
 
 
