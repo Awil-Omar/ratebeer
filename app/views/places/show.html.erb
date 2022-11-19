@@ -1,0 +1,19 @@
+<table>
+  <thead>
+  <th>name</th>
+  <th>street</th>
+  <th>city</th>
+  <th>zip</th>
+  <th>country</th>
+  </thead>
+  <% @places.each do |place| %>
+    <tr>
+      <td><%= place.name %></td>
+      <td><%= place.street %></td>
+      <td><%= place.city %></td>
+      <td><%= place.zip %></td>
+      <td><%= place.country %></td>
+    </tr>
+  </tr>
+  <% end %>
+</table>

@@ -9,12 +9,12 @@
 <% else %>
   Has made <%= pluralize(@user.ratings.count, 'rating') %> with an average of <%= @user.average_rating %>
 
-  <h4>ratings</h4>
+  <h2>ratings</h2>
 
   <ul>
     <% @user.ratings.each do |rating| %>
       <li>
-        <%= "#{rating.score} #{rating.beer.name}" %>
+        <%= "#{rating.beer.name} #{rating.score}" %>
         <% if @user == current_user %>
           <%= button_to 'delete', rating, method: :delete, form: { style: 'display:inline-block;',  data: { 'turbo-confirm': 'Are you sure?' } } %>
         <% end %>

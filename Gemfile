@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -91,10 +93,13 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'launchy'
+  gem 'webmock'
 end
 
 
 gem 'simplecov' , require: false
+
+gem 'httparty'
 
 
 

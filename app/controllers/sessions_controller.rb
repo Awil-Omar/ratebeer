@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
+    #at the begging the searched city value is null
+    session[:city]  = nil
     user = User.find_by username: params[:username]
     # user is found and the password is correct
     if user && user.authenticate(params[:password])

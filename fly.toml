@@ -1,6 +1,6 @@
-# fly.toml file generated for ratebeer1 on 2022-10-04T14:09:56+02:00
+# fly.toml file generated for beerapp on 2022-11-02T10:14:54+01:00
 
-app = "ratebeer1"
+app = "beerapp"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
