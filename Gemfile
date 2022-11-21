@@ -101,6 +101,12 @@ gem 'simplecov' , require: false
 
 gem 'httparty'
 
+gem 'bootstrap', '~> 5.2.0'
+gem 'jquery-rails'
+
+
+
+
 
 
 

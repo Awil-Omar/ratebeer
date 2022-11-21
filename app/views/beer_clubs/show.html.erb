@@ -3,18 +3,25 @@
 <%= render @beer_club %>
 
 <% if current_user %>
-  <h4>Join a club:</h4>
 
-  <%= form_with(model: @membership) do |form| %>
-    <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "Join the beer club" %>
+  <% if not @beer_club.members.include?(current_user) %>
+    <%= form_with(model: @membership) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "Join the beerclub" %>
+    <% end %>
+  <% else %>
+    <%= form_with(model: @membership, method: :delete) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "End the membership" %>
+    <% end %>
   <% end %>
 
-<div>
-  <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) %> |
-  <%= link_to "Back to beer clubs", beer_clubs_path %>
+  <div>
+    <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) %>
 
-  <%= button_to "Destroy this beer club", @beer_club, method: :delete %>
-</div>
-<%end %>
+    <%= button_to "Destroy this beer club", @beer_club, method: :delete %>
+  </div>
+
+<% end %>

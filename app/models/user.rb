@@ -6,7 +6,9 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 4 }
 
 
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :beer_clubs, through: :memberships
   has_many :beers, through: :ratings
 
   def average
