@@ -21,10 +21,6 @@ b2.beers.create name: "X Porter", style: "Porter"
 b3.beers.create name: "Hefeweizen", style: "Weizen"
 b3.beers.create name: "Helles", style: "Lager"
 
- b = Beer.first
- b.ratings.create score: 10
- b.ratings.create score: 21
- b.ratings.create score: 17
 
 
 

@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :beer_clubs, through: :memberships
   has_many :beers, through: :ratings
 
+  scope :admin, -> { where admin: true }
+
   def average
     ratings.map(&:score).sum / ratings.count.to_f unless 0
   end

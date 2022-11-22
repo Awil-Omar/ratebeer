@@ -11,6 +11,15 @@
   <% end %>
 </ul>
 
+<h1> Most active Users</h1>
+
+<ul>
+    <%= @ratings.each do |d| %>
+    <li> <%= d.user %> <%=d.rating.count %></li>
+    <% end %> %>
+
+</ul>
+
 <%= link_to "New rating", new_rating_path %>
 
 

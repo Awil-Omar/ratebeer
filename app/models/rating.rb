@@ -6,6 +6,9 @@ class Rating < ApplicationRecord
                                     less_than_or_equal_to: 50,
                                     only_integer: true }
 
+  scope :recent,-> {Rating.last(5) }
+
+
 
   def to_s
     "#{name} "

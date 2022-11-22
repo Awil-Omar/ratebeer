@@ -6,6 +6,9 @@ class BreweriesController < ApplicationController
   # GET /breweries or /breweries.json
   def index
     @breweries = Brewery.all
+    @active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
+    @top_breweries = Brewery.top 3
   end
 
   # GET /breweries/1 or /breweries/1.json
@@ -20,6 +23,15 @@ class BreweriesController < ApplicationController
 
   # GET /breweries/1/edit
   def edit
+  end
+
+  def toggle_activity
+    brewery = Brewery.find(params[:id])
+    brewery.update_attribute :active, (not brewery.active)
+
+    new_status = brewery.active? ? "active" : "retired"
+
+    redirect_to brewery, notice:"brewery activity status changed to #{new_status}"
   end
 
   # POST /breweries or /breweries.json
@@ -78,7 +90,7 @@ class BreweriesController < ApplicationController
   # ...
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      raise "Wrong username or password" unless (username == "admin") && (password == "secret")
+      raise "Wrong username or password" unless (username == "james") && (password == "12345")
 
       return true
     end
